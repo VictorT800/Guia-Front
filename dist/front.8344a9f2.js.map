@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["console","log"],"mappings":";AACAA,QAAQC,IAAI","file":"front.8344a9f2.js","sourceRoot":"..","sourcesContent":["\r\nconsole.log('hola mundo')"]}
