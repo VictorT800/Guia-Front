@@ -71,7 +71,7 @@
 				</div>
 				<div class="contenido">
 					<p>Crear el archivo <code>index.html</code> e <code>index.js</code> y enlazarlos mediante un <code>script</code> antes del cierre de la etiqueta  &#60;/body&#62;:</p>
-					<p><code>&#60;src="./index.js"&#62;&#60;/script&#62;</code></p>
+					<p><code>&#60;script src="./index.js"&#62;&#60;/script&#62;</code></p>
 					<img src="img/6_indexYenlaceJS.jpg" alt="">
 					<p>Parcel tiene un servidor de desarrollo. Le indicamos previamente la ruta de entrada a nuestro proyecto desde la Teminal con este código:</p>
 					<p><code>parcel index.html</code></p>		
@@ -170,10 +170,24 @@
 		</article>
 
 		<article class="principal">
-			<h2>Subir el proyecto a GitHub</h2>
+			<h2>Optimizar tamaño de las imágenes</h2>
 			<div class="container">
 				<div class="numero">
 					<p class="nume">9</p>
+				</div>
+				<div class="contenido">
+					<p>De forma manual, podemos optimizar el tamaño de las imágenes de nuestro proyecto mediante <a href="http://webresizer.com/resizer/?lang=es" target="_blank">web resizer</a></p>
+					<p>Además de disminuir el tamaño de las imágenes de forma manuel, podemos instalar un optimizador automático. Se trata de parcel-plugin-imagemin. Para instalarlo ejecutaremos la siguiente orden:</p>
+					<p><code>npm install parcel-plugin-imagemin --save-dev</code></p>
+				</div>
+			</div>
+		</article>
+
+		<article class="principal">
+			<h2>Subir el proyecto a GitHub</h2>
+			<div class="container">
+				<div class="numero">
+					<p class="nume">10</p>
 				</div>
 				<div class="contenido">
 					<p>En la esuina superior derecha "Abrir nuevo repositorio"</p>
@@ -198,7 +212,7 @@
 			<h2>Publicar la web</h2>
 			<div class="container">
 				<div class="numero">
-					<p class="nume">10</p>
+					<p class="nume">11</p>
 				</div>
 				<div class="contenido">
 					<p>En este caso vamos a publicar la web en Netlify</p>
@@ -216,7 +230,7 @@
 			<h2>Modificaciones en el proyecto una vez publicado</h2>
 			<div class="container">
 				<div class="numero">
-					<p class="nume">11</p>
+					<p class="nume">12</p>
 				</div>
 				<div class="contenido">
 					<p>Primero en la Terminal borramos el commit que hemos subido a GitHub:</p>
