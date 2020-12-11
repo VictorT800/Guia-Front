@@ -66,6 +66,10 @@ header {
 	width: 80%;
 }
 
+.letra-pequeña {
+	font-size: 12px;
+}
+
 
 p{
 	text-align: justify;

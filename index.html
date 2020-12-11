@@ -184,10 +184,138 @@
 		</article>
 
 		<article class="principal">
-			<h2>Subir el proyecto a GitHub</h2>
+			<h2>Instalar librería de iconos FontAwesome</h2>
 			<div class="container">
 				<div class="numero">
 					<p class="nume">10</p>
+				</div>
+				<div class="contenido">
+					<p>Para instalar todos los iconos directamente en nuestro proyecto ejecutaremos en la Terminal la siguiente orden:</p>
+					<p><code>npm install --save @fortawesome/fontawesome-free</code></p>
+					<p>En ocasiones es necesario instalar la librería <em>build-essential</em> para que "npm install" pueda instalar y compilar todas las dependencias necesarias. Si se opta por instalar esta librería se hará mediante la orden:</p>
+					<p><code>sudo apt-get install build-essential</code></p>
+					<p>La librería se importará a nuestro proyecto en el archivo principal de CSS (main.css) o en caso de usar SASS se importará y se configurará en el archivo "main.scss" mediante el siguente cósigo en ese archivo CSS:</p>
+					<p><code> @import "@fortawesome/fontawesome-free/css/all.css";</code></p>
+				</div>
+			</div>
+		</article>
+
+		<article class="principal">
+			<h2>Instalar Sass. Opcional</h2>
+			<div class="container">
+				<div class="numero">
+					<p class="nume">11</p>
+				</div>
+				<div class="contenido">
+					<p>En caso de querere instalar Sass en el proyecto, lo podermos hacer insertando la librería entera de componentes mediante el siguienter comando:</p>
+					<p><code>npm install -g sass</code></p>
+					<p>Sass se puede usar también sin necesiad de instalar todas sus dependencias en el proyecto.</p>
+				</div>
+			</div>
+		</article>
+
+		<article class="principal">
+			<h2>instalación de <em>Stylelint</em>. Opcional</h2>
+			<div class="container">
+				<div class="numero">
+					<p class="nume">12</p>
+				</div>
+				<div class="contenido">
+					<p>Stylelint es una herramienta para para analizar nuestro código, y asegurarse que cumple la guía de estilo elegida. Recomendable si se trabaja en equipo, ya que se unifica el estilo visual del código.</p>
+					<p>Para instalas esta dependencia, ejecutaremos el siguiente código:</p>
+					<p><code>npm install --save-dev stylelint</code></p>
+					<p>El <em>plugin</em> para utilizar las reglas específicas para la sintaxis SCSS de Sass así como la configuración estándar, lo haremos mediante la siguiente orden:</p>
+					<p><em>npm install --save-dev stylelint-config-standard stylelint-scss</em></p>
+					<p>A conticuación hay que configurar Stylelint creando en la raíz del proyecto un archivo llamado <code>stylelint.config.js</code> e introducir ahí la configuración que queramos:</p>
+					<p><code class="letra-pequeña">
+						module.exports = { <br>
+						  "extends": "stylelint-config-standard", <br>
+						  "plugins": [ <br>
+						    "stylelint-scss" <br>
+						  ], <br>
+						  "rules": { <br>
+						    "selector-nested-pattern": "^&", <br>
+						    "indentation": 2, <br>
+						    "no-descending-specificity": null, <br>
+						    "no-eol-whitespace": null, <br>
+						    "declaration-empty-line-before": null, <br>
+						    "value-keyword-case": null <br>
+						  } <br>
+						}
+					</code></p>
+					<p>Finalmente hay que añadir Stylelint en la rutina del proyecto, incluyéndolo en los <em>scripts</em> del <code>package.json</code></p>
+					<p><code class="letra-pequeña">
+						"scripts": { <br>
+						    "parcel:dev": "parcel src/index.html -p 8123 --open", <br>
+						    "parcel:build": "parcel build src/index.html --public-url ./ --out-dir dist --no-source-maps --no-cache", <br>
+						    "clean": "rimraf dist .cache .cache-loader", <br>
+						    "dev": "npm-run-all clean parcel:dev", <br>
+						    "build": "npm-run-all clean stylelint parcel:build", <br>
+						    <strong>"stylelint": "stylelint src/**/*.scss",</strong> <br>
+						  },
+					</code></p>
+					<p>Por último, se puede incorporar la rutina que hemos creado a la rutina de <em>build</em>, de forma que sólo podamos compilar para producción si las hojas de estilos pasan la validación de Stylelint. Esta configuración es opcional.</p>
+					<p>En caso de optar por esta configuración, se debe añadir la rutina de <em>Styleilnt</em> a la configuración del <code>package.json:</code></p>
+					<p><code class="letra-pequeña">
+						"scripts": { <br>
+						    "parcel:dev": "parcel src/index.html -p 8123 --open", <br>
+						    "parcel:build": "parcel build src/index.html --public-url ./ --out-dir dist --no-source-maps --no-cache", <br>
+						    "clean": "rimraf dist .cache .cache-loader", <br>
+						    "dev": "npm-run-all clean parcel:dev", <br>
+						    "build": "npm-run-all clean <strong>stylelint</strong> parcel:build", <br>
+						    "stylelint": "stylelint src/**/*.scss", <br>
+						    "test": "echo 'Everything is working as expected ✅\nStart working on your project by running \\033[1mnpm run dev\\033[0m'" <br>
+						  },
+					</code></p>
+					<p><strong>Atención:</strong> Stylelint aún no incorpora aún no reconoce la directiva <code>@use</code> de Sass y puede marcar errores indebidos. Para evitarlo incluiremos la clave de configuración en el fichero <code>stylelint.config.js</code></p>
+					<P><code><pre>
+						module.exports = {
+						  ...
+						  "rules": {
+						    ...
+						    <strong>
+						    "at-rule-no-unknown": [
+						      true,
+						      {
+						        "ignoreAtRules": [
+						          "tailwind",
+						          "apply",
+						          "responsive",
+						          "variants",
+						          "screen",
+						          "use"
+						        ]
+						      }
+						    ]
+						    </strong>
+						  }
+						}
+					</pre></code></P>
+				</div>
+			</div>
+		</article>
+
+		<article class="principal">
+			<h2>Instalar Bootstrap. Opcional</h2>
+			<div class="container">
+				<div class="numero">
+					<p class="nume">14</p>
+				</div>
+				<div class="contenido">
+					<p>Bootstrap es una librería de componentes. Se puede trabajar con él de forma externa o insertándolo en nuestro proyecto. En caso de queres insertar todas las librerías, lo haremos mediante la siguiente orden en la Terminal:</p>
+					<p><code>npm install jquery popper.js bootstrap --save</code></p>
+					<p>Después importamos las dependencias. Dentro del fichero <code>main.js</code> lo hacemos añadiendo esta línea:</p>
+					<p><code>import 'bootstrap';</code></p>
+					<p>Luego, denrto del archivo <code>main.scss</code> añadimos esta línea: <code>@import "~bootstrap/scss/bootstrap.scss";</code></p>
+				</div>
+			</div>
+		</article>
+
+		<article class="principal">
+			<h2>Subir el proyecto a GitHub</h2>
+			<div class="container">
+				<div class="numero">
+					<p class="nume">15</p>
 				</div>
 				<div class="contenido">
 					<p>En la esuina superior derecha "Abrir nuevo repositorio"</p>
@@ -209,10 +337,27 @@
 		</article>
 
 		<article class="principal">
+			<h2>Modificaciones del proyecto y subir de nuevo a GitHub</h2>
+			<div class="container">
+				<div class="numero">
+					<p class="nume">16</p>
+				</div>
+				<div class="contenido">
+					<p>Añadir los archivos al repositorio <em>git</em> mediante la orden:</p>
+					<p><code>git add .</code></p>
+					<p>Añadir el nuevo commit mediante la siguiente orden:</p>
+					<p><code>git commit -m "Nombre del nuevo commit que queramos"</code></p>
+					<p>Subir los cambios al repositorio GitHub</p>
+					<p><code>git push origin master</code></p>
+				</div>
+			</div>
+		</article>
+
+		<article class="principal">
 			<h2>Publicar la web</h2>
 			<div class="container">
 				<div class="numero">
-					<p class="nume">11</p>
+					<p class="nume">17</p>
 				</div>
 				<div class="contenido">
 					<p>En este caso vamos a publicar la web en Netlify</p>
@@ -223,6 +368,21 @@
 					<p><b>Build command</b> = npm run build</p>
 					<p><b>Publish directory</b> = dist</p>
 					<p>Finalmente seleccionar la opción "Deploy Site" y ya nos da la URL de nuestra nueva web</p>
+				</div>
+			</div>
+		</article>
+
+		<article class="principal">
+			<h2>Clonar un repositorio</h2>
+			<div class="container">
+				<div class="numero">
+					<p class="nume">18</p>
+				</div>
+				<div class="contenido">
+					<p>En caso de que queramos clonar un repositorio, lo podemos hacer desde GitHub con el botón verde, y descargar el repositorio en .zip. Luego, lo descomprimimos en una carpeta de trabajo y ejecutamos la orden <code>npm install</code>. De esta forma se instalarían todas las dependencias.</p>
+					<p>En caso de clonar un repositorio, pero querer reiniciarlo y tratarlo como si se tratara de un nuevo trabajo, después de ejecutar <code>npm install</code> tenemos que proceder a borrar la carpeta oculta de .git, lo que haremos mediante la siguiente orden: <code>rm -rf .git</code></p>
+					<p>A partir de aquí, tendremos que tratar este proyecto como uno nuevo, y volver a darle una ruta de acceso a GitHub tal y como hemos hecho en el punto 15</p>
+				</div>
 			</div>
 		</article>
 
@@ -230,12 +390,13 @@
 			<h2>Modificaciones en el proyecto una vez publicado</h2>
 			<div class="container">
 				<div class="numero">
-					<p class="nume">12</p>
+					<p class="nume">17</p>
 				</div>
 				<div class="contenido">
 					<p>Primero en la Terminal borramos el commit que hemos subido a GitHub:</p>
 					<p><code>git reset --soft HEAD~1</code></p>
 					<p>Volvemos a ejecutar los pasos de subir proyeecto a GitHub.</p>
+				</div>
 			</div>
 		</article>
 	</main>
